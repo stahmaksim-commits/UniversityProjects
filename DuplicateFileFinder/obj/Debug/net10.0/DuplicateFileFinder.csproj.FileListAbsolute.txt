@@ -1,0 +1,14 @@
+/Users/macbookair/UniversityProjects/DuplicateFileFinder/bin/Debug/net10.0/DuplicateFileFinder
+/Users/macbookair/UniversityProjects/DuplicateFileFinder/bin/Debug/net10.0/DuplicateFileFinder.deps.json
+/Users/macbookair/UniversityProjects/DuplicateFileFinder/bin/Debug/net10.0/DuplicateFileFinder.runtimeconfig.json
+/Users/macbookair/UniversityProjects/DuplicateFileFinder/bin/Debug/net10.0/DuplicateFileFinder.dll
+/Users/macbookair/UniversityProjects/DuplicateFileFinder/bin/Debug/net10.0/DuplicateFileFinder.pdb
+/Users/macbookair/UniversityProjects/DuplicateFileFinder/obj/Debug/net10.0/DuplicateFileFinder.GeneratedMSBuildEditorConfig.editorconfig
+/Users/macbookair/UniversityProjects/DuplicateFileFinder/obj/Debug/net10.0/DuplicateFileFinder.AssemblyInfoInputs.cache
+/Users/macbookair/UniversityProjects/DuplicateFileFinder/obj/Debug/net10.0/DuplicateFileFinder.AssemblyInfo.cs
+/Users/macbookair/UniversityProjects/DuplicateFileFinder/obj/Debug/net10.0/DuplicateFileFinder.csproj.CoreCompileInputs.cache
+/Users/macbookair/UniversityProjects/DuplicateFileFinder/obj/Debug/net10.0/DuplicateFileFinder.dll
+/Users/macbookair/UniversityProjects/DuplicateFileFinder/obj/Debug/net10.0/refint/DuplicateFileFinder.dll
+/Users/macbookair/UniversityProjects/DuplicateFileFinder/obj/Debug/net10.0/DuplicateFileFinder.pdb
+/Users/macbookair/UniversityProjects/DuplicateFileFinder/obj/Debug/net10.0/DuplicateFileFinder.genruntimeconfig.cache
+/Users/macbookair/UniversityProjects/DuplicateFileFinder/obj/Debug/net10.0/ref/DuplicateFileFinder.dll
