@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DuplicateFileFinder")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b774591769189ed58abaa613f0ffffe4963190e3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d81f512bb025c20d10a5b71bf78d20b47d590ee")]
 [assembly: System.Reflection.AssemblyProductAttribute("DuplicateFileFinder")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DuplicateFileFinder")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
