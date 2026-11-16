@@ -1,0 +1,16 @@
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Application/bin/Debug/net10.0/SplitwiseClone.Application.deps.json
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Application/bin/Debug/net10.0/SplitwiseClone.Application.dll
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Application/bin/Debug/net10.0/SplitwiseClone.Application.pdb
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Application/bin/Debug/net10.0/SplitwiseClone.Domain.dll
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Application/bin/Debug/net10.0/SplitwiseClone.Domain.pdb
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Application/obj/Debug/net10.0/SplitwiseClone.Application.csproj.AssemblyReference.cache
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Application/obj/Debug/net10.0/SplitwiseClone.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Application/obj/Debug/net10.0/SplitwiseClone.Application.AssemblyInfoInputs.cache
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Application/obj/Debug/net10.0/SplitwiseClone.Application.AssemblyInfo.cs
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Application/obj/Debug/net10.0/SplitwiseClone.Application.csproj.CoreCompileInputs.cache
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Application/obj/Debug/net10.0/SplitwiseClone.Application.sourcelink.json
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Application/obj/Debug/net10.0/Splitwis.44BC1F68.Up2Date
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Application/obj/Debug/net10.0/SplitwiseClone.Application.dll
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Application/obj/Debug/net10.0/refint/SplitwiseClone.Application.dll
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Application/obj/Debug/net10.0/SplitwiseClone.Application.pdb
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Application/obj/Debug/net10.0/ref/SplitwiseClone.Application.dll

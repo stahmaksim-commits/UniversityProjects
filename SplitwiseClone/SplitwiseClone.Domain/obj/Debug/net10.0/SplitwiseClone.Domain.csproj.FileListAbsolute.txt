@@ -1,0 +1,12 @@
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Domain/bin/Debug/net10.0/SplitwiseClone.Domain.deps.json
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Domain/bin/Debug/net10.0/SplitwiseClone.Domain.dll
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Domain/bin/Debug/net10.0/SplitwiseClone.Domain.pdb
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Domain/obj/Debug/net10.0/SplitwiseClone.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Domain/obj/Debug/net10.0/SplitwiseClone.Domain.AssemblyInfoInputs.cache
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Domain/obj/Debug/net10.0/SplitwiseClone.Domain.AssemblyInfo.cs
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Domain/obj/Debug/net10.0/SplitwiseClone.Domain.csproj.CoreCompileInputs.cache
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Domain/obj/Debug/net10.0/SplitwiseClone.Domain.sourcelink.json
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Domain/obj/Debug/net10.0/SplitwiseClone.Domain.dll
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Domain/obj/Debug/net10.0/refint/SplitwiseClone.Domain.dll
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Domain/obj/Debug/net10.0/SplitwiseClone.Domain.pdb
+/Users/macbookair/UniversityProjects/SplitwiseClone/SplitwiseClone.Domain/obj/Debug/net10.0/ref/SplitwiseClone.Domain.dll
