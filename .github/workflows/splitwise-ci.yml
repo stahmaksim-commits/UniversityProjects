@@ -1,4 +1,4 @@
-name: SplitwiseClone CI
+name: SplitwiseClone CI/CD
 
 on:
   push:
@@ -26,3 +26,6 @@ jobs:
 
       - name: Run unit tests
         run: dotnet test SplitwiseClone/SplitwiseClone.Tests/SplitwiseClone.Tests.csproj --no-build --verbosity normal
+
+      - name: Build Docker image
+        run: docker build -f SplitwiseClone/Dockerfile -t splitwise-api .
