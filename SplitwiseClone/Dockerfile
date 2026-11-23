@@ -9,7 +9,7 @@ COPY SplitwiseClone/SplitwiseClone.Api/SplitwiseClone.Api.csproj SplitwiseClone/
 RUN dotnet restore SplitwiseClone/SplitwiseClone.Api/SplitwiseClone.Api.csproj
 
 COPY SplitwiseClone/ SplitwiseClone/
-RUN dotnet publish SplitwiseClone/SplitwiseClone.Api/SplitwiseClone.Api.csproj -c Release -o /app/publish --no-restore
+RUN dotnet publish SplitwiseClone/SplitwiseClone.Api/SplitwiseClone.Api.csproj -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
 WORKDIR /app
