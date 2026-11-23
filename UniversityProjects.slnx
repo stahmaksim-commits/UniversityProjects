@@ -1,3 +1,9 @@
 <Solution>
+  <Folder Name="/SplitwiseClone/">
+    <Project Path="SplitwiseClone/SplitwiseClone.Api/SplitwiseClone.Api.csproj" />
+    <Project Path="SplitwiseClone/SplitwiseClone.Application/SplitwiseClone.Application.csproj" />
+    <Project Path="SplitwiseClone/SplitwiseClone.Domain/SplitwiseClone.Domain.csproj" />
+    <Project Path="SplitwiseClone/SplitwiseClone.Infrastructure/SplitwiseClone.Infrastructure.csproj" />
+  </Folder>
   <Project Path="DuplicateFileFinder/DuplicateFileFinder.csproj" />
 </Solution>
