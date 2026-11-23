@@ -1,13 +1,14 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SplitwiseClone.Domain;
 
 namespace SplitwiseClone.Infrastructure;
 
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-    public DbSet<ApplicationUser> Users => Set<ApplicationUser>();
     public DbSet<Group> Groups => Set<Group>();
     public DbSet<GroupMember> GroupMembers => Set<GroupMember>();
     public DbSet<Expense> Expenses => Set<Expense>();
@@ -16,6 +17,7 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<GroupMember>().HasKey(gm => new { gm.GroupId, gm.UserId });
         modelBuilder.Entity<GroupMember>().HasOne(gm => gm.Group).WithMany(g => g.Members).HasForeignKey(gm => gm.GroupId);
         modelBuilder.Entity<GroupMember>().HasOne(gm => gm.User).WithMany(u => u.GroupMemberships).HasForeignKey(gm => gm.UserId);

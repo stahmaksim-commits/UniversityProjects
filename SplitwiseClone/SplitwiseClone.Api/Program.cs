@@ -1,5 +1,5 @@
 using FluentValidation;
-using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SplitwiseClone.Api.Middleware;
 using SplitwiseClone.Application;
@@ -16,19 +16,19 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(connectionString));
 
+builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
+    .AddEntityFrameworkStores<AppDbContext>();
+
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IExpenseService, ExpenseService>();
 builder.Services.AddScoped<IBalanceService, BalanceService>();
-builder.Services.AddScoped<IValidator<CreateEqualSplitExpenseRequest>, CreateEqualSplitExpenseRequestValidator>();
-
-builder.Services.AddAuthentication(HeaderAuthHandler.SchemeName)
-    .AddScheme<AuthenticationSchemeOptions, HeaderAuthHandler>(HeaderAuthHandler.SchemeName, null);
+builder.Services.AddValidatorsFromAssemblyContaining<CreateEqualSplitExpenseRequestValidator>();
 builder.Services.AddAuthorization();
 
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(o=>o.JsonSerializerOptions.ReferenceHandler=System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -48,10 +48,15 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+else
+{
+    app.UseHttpsRedirection();
+}
 
-app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapIdentityApi<ApplicationUser>();
 app.MapControllers();
 
 app.Run();

@@ -12,7 +12,14 @@ public class Repository<T> : IRepository<T> where T : class
         _context = context;
     }
 
-    public async Task<T?> GetByIdAsync(Guid id) => await _context.Set<T>().FindAsync(id);
+    public async Task<T?> GetByIdAsync(Guid id)
+    {
+        if (typeof(T) == typeof(SplitwiseClone.Domain.Group))
+        {
+            return await _context.Set<SplitwiseClone.Domain.Group>().Include(g => g.Members).Include(g => g.Expenses).FirstOrDefaultAsync(g => g.Id == id) as T;
+        }
+        return await _context.Set<T>().FindAsync(id);
+    }
     public async Task<IEnumerable<T>> GetAllAsync() => await _context.Set<T>().ToListAsync();
     public async Task AddAsync(T entity) => await _context.Set<T>().AddAsync(entity);
     public void Update(T entity) => _context.Set<T>().Update(entity);

@@ -1,0 +1,52 @@
+name: CI & Continuous Deployment
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: SplitwiseClone
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore dependencies
+        run: dotnet restore SplitwiseClone.Api/SplitwiseClone.Api.csproj
+
+      - name: Build
+        run: dotnet build SplitwiseClone.Api/SplitwiseClone.Api.csproj --configuration Release --no-restore
+
+      - name: Run tests (if test projects exist)
+        run: |
+          if ls ./**/*Tests*.csproj 1>/dev/null 2>&1; then
+            dotnet test --configuration Release --no-build
+          else
+            echo "No test projects found, skipping dotnet test"
+          fi
+
+  deploy-render:
+    needs: build-and-test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render Deploy Hook
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -n "$RENDER_DEPLOY_HOOK_URL" ]; then
+            curl -sf -X POST "$RENDER_DEPLOY_HOOK_URL"
+            echo "Triggered Render deployment"
+          else
+            echo "RENDER_DEPLOY_HOOK_URL not set; skipping webhook"
+          fi
