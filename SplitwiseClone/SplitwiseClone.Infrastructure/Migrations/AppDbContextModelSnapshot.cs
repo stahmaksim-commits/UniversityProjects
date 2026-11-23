@@ -17,19 +17,38 @@ namespace SplitwiseClone.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.15");
 
-            modelBuilder.Entity("GroupUser", b =>
+            modelBuilder.Entity("SplitwiseClone.Domain.ApplicationUser", b =>
                 {
-                    b.Property<Guid>("GroupsId")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("MembersId")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("GroupsId", "MembersId");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("MembersId");
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.ToTable("GroupUser");
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("SplitwiseClone.Domain.Expense", b =>
@@ -38,32 +57,71 @@ namespace SplitwiseClone.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Amount")
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CreatedByUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("GroupId")
+                    b.Property<Guid?>("GroupId")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("PaidById")
+                    b.Property<bool>("IsPayment")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("TotalCost")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatedByUserId");
+
                     b.HasIndex("GroupId");
 
-                    b.HasIndex("PaidById");
-
                     b.ToTable("Expenses");
+                });
+
+            modelBuilder.Entity("SplitwiseClone.Domain.ExpenseSplit", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ExpenseId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("OwedShare")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("PaidShare")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExpenseId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ExpenseSplits");
                 });
 
             modelBuilder.Entity("SplitwiseClone.Domain.Group", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -75,62 +133,98 @@ namespace SplitwiseClone.Infrastructure.Migrations
                     b.ToTable("Groups");
                 });
 
-            modelBuilder.Entity("SplitwiseClone.Domain.User", b =>
+            modelBuilder.Entity("SplitwiseClone.Domain.GroupMember", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("GroupId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
+                    b.Property<Guid>("UserId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<DateTime>("JoinedAt")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("GroupId", "UserId");
 
-                    b.ToTable("Users");
-                });
+                    b.HasIndex("UserId");
 
-            modelBuilder.Entity("GroupUser", b =>
-                {
-                    b.HasOne("SplitwiseClone.Domain.Group", null)
-                        .WithMany()
-                        .HasForeignKey("GroupsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SplitwiseClone.Domain.User", null)
-                        .WithMany()
-                        .HasForeignKey("MembersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.ToTable("GroupMembers");
                 });
 
             modelBuilder.Entity("SplitwiseClone.Domain.Expense", b =>
                 {
+                    b.HasOne("SplitwiseClone.Domain.ApplicationUser", "CreatedByUser")
+                        .WithMany("CreatedExpenses")
+                        .HasForeignKey("CreatedByUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SplitwiseClone.Domain.Group", "Group")
                         .WithMany("Expenses")
+                        .HasForeignKey("GroupId");
+
+                    b.Navigation("CreatedByUser");
+
+                    b.Navigation("Group");
+                });
+
+            modelBuilder.Entity("SplitwiseClone.Domain.ExpenseSplit", b =>
+                {
+                    b.HasOne("SplitwiseClone.Domain.Expense", "Expense")
+                        .WithMany("Splits")
+                        .HasForeignKey("ExpenseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SplitwiseClone.Domain.ApplicationUser", "User")
+                        .WithMany("ExpenseSplits")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Expense");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SplitwiseClone.Domain.GroupMember", b =>
+                {
+                    b.HasOne("SplitwiseClone.Domain.Group", "Group")
+                        .WithMany("Members")
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SplitwiseClone.Domain.User", "PaidBy")
-                        .WithMany()
-                        .HasForeignKey("PaidById")
-                        .OnDelete(DeleteBehavior.Restrict)
+                    b.HasOne("SplitwiseClone.Domain.ApplicationUser", "User")
+                        .WithMany("GroupMemberships")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Group");
 
-                    b.Navigation("PaidBy");
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SplitwiseClone.Domain.ApplicationUser", b =>
+                {
+                    b.Navigation("CreatedExpenses");
+
+                    b.Navigation("ExpenseSplits");
+
+                    b.Navigation("GroupMemberships");
+                });
+
+            modelBuilder.Entity("SplitwiseClone.Domain.Expense", b =>
+                {
+                    b.Navigation("Splits");
                 });
 
             modelBuilder.Entity("SplitwiseClone.Domain.Group", b =>
                 {
                     b.Navigation("Expenses");
+
+                    b.Navigation("Members");
                 });
 #pragma warning restore 612, 618
         }
